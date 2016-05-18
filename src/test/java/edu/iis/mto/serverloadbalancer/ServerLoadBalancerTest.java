@@ -31,7 +31,7 @@ public class ServerLoadBalancerTest {
         balancing(aListOfServersWith(theServer), aListOfVmsWith(theVm));
 
         assertThat(theServer, hasCurrentLoadOfVms(100.0d));
-        assertThat("server should contain vm", theServer.contains(vm));
+        assertThat("server should contain vm", theServer.contains(theVm));
 
     }
 
@@ -47,7 +47,19 @@ public class ServerLoadBalancerTest {
         return new Server[] {server};
     }
 
+    private Vm[] aListOfVmsWith(Vm theVm) {
+        return new Vm[] {theVm};
+    }
+
     private Server a(ServerBuilder builder) {
         return builder.build();
+    }
+
+    private Vm a(VmBuilder builder) {
+        return builder.build();
+    }
+
+    private VmBuilder vm() {
+        return new VmBuilder();
     }
 }

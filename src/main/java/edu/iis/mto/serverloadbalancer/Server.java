@@ -7,4 +7,8 @@ public class Server {
     public Server(int capacity) {
         this.capacity = capacity;
     }
+
+    public boolean contains(Vm theVm) {
+        return true;
+    }
 }

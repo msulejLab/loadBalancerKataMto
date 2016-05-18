@@ -1,6 +1,6 @@
 package edu.iis.mto.serverloadbalancer;
 
-public class ServerBuilder {
+public class ServerBuilder implements Builder<Server> {
 
     private int capacity;
 
@@ -9,11 +9,11 @@ public class ServerBuilder {
         return this;
     }
 
-    public Server build() {
-        return new Server(capacity);
-    }
-
     public static ServerBuilder server() {
         return new ServerBuilder();
+    }
+
+    public Server build() {
+        return new Server(capacity);
     }
 }

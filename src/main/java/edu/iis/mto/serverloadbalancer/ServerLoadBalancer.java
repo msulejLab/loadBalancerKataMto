@@ -40,7 +40,7 @@ public class ServerLoadBalancer {
                 lessLoadedServer = server;
             }
 
-            if (server.currentLoadPercentage < lessLoadedServer.currentLoadPercentage) {
+            if (server.getCurrentLoadPercentage() < lessLoadedServer.getCurrentLoadPercentage()) {
                 lessLoadedServer = server;
             }
         }

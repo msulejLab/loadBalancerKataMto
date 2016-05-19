@@ -75,6 +75,16 @@ public class ServerLoadBalancerTest {
         assertThat("less loaded server should contain vm", lessLoadedServer.contains(theVm));
     }
 
+    @Test
+    public void balanceAServerWithNotEnoughRoom_shouldNotBeFilledWithAVm() {
+        Server theServer = a(server().withCapacity(10).withCurrentLoadOf(90.0));
+        Vm theVm = a(vm().ofSize(2));
+
+        balancing(aListOfServersWith(theServer), aListOfVmsWith(theVm));
+
+        assertThat("server shouldn't contain the vm", !theServer.contains(theVm));
+    }
+
     private void balancing(Server[] servers, Vm[] vms) {
         new ServerLoadBalancer().balance(servers, vms);
     }

@@ -4,19 +4,28 @@ public class ServerLoadBalancer {
 
     public void balance(Server[] servers, Vm[] vms) {
         for (Vm vm : vms) {
-            Server lessLoadedServer = null;
+            addToLessLoadedServer(servers, vm);
+        }
+    }
 
-            for (Server server : servers) {
-                if (lessLoadedServer == null) {
-                    lessLoadedServer = server;
-                }
+    private void addToLessLoadedServer(Server[] servers, Vm vm) {
+        Server lessLoadedServer = extractLessLoadedServer(servers);
 
-                if (server.currentLoadPercentage < lessLoadedServer.currentLoadPercentage) {
-                    lessLoadedServer = server;
-                }
+        lessLoadedServer.addVm(vm);
+    }
+
+    private Server extractLessLoadedServer(Server[] servers) {
+        Server lessLoadedServer = null;
+
+        for (Server server : servers) {
+            if (lessLoadedServer == null) {
+                lessLoadedServer = server;
             }
 
-            lessLoadedServer.addVm(vm);
+            if (server.currentLoadPercentage < lessLoadedServer.currentLoadPercentage) {
+                lessLoadedServer = server;
+            }
         }
+        return lessLoadedServer;
     }
 }

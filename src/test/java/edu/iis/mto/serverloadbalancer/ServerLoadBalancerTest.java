@@ -8,10 +8,10 @@ import static org.hamcrest.Matchers.equalTo;
 import org.junit.Test;
 
 public class ServerLoadBalancerTest {
-	@Test
-	public void itCompiles() {
-		assertThat(true, equalTo(true));
-	}
+    @Test
+    public void itCompiles() {
+        assertThat(true, equalTo(true));
+    }
 
     @Test
     public void balancingServer_noVm_ServerStaysEmpty() {
@@ -31,6 +31,18 @@ public class ServerLoadBalancerTest {
 
         assertThat(theServer, hasLoadPercentageOf(100.0d));
         assertThat("the server should contain vm", theServer.contains(theVm));
+    }
+
+    private Vm[] aListOfVmsWith(Vm ... vms) {
+        return vms;
+    }
+
+    private Vm a(VmBuilder builder) {
+        return null;
+    }
+
+    private VmBuilder vm() {
+        return new VmBuilder();
     }
 
     private void balance(Server[] servers, Vm[] vms) {

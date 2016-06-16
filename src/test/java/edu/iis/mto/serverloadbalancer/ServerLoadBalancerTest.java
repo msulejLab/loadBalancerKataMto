@@ -91,6 +91,8 @@ public class ServerLoadBalancerTest {
         Vm vm2 = a(vm().ofSize(4));
         Vm vm3 = a(vm().ofSize(2));
 
+        balance(aListOfServersWith(firstServer, secondServer), aListOfVmsWith(vm1, vm2, vm3));
+
         assertThat("first server should contain first vm", firstServer.contains(vm1));
         assertThat("second server should contain second vm", secondServer.contains(vm2));
         assertThat("first server should contain third vm", firstServer.contains(vm3));

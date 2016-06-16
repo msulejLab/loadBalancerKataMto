@@ -99,7 +99,6 @@ public class ServerLoadBalancerTest {
 
         assertThat(firstServer, hasLoadPercentageOf(3.0 / 4.0 * 100.0));
         assertThat(secondServer, hasLoadPercentageOf(4.0 / 6.0 * 100));
-
     }
 
     private void balance(Server[] servers, Vm[] vms) {

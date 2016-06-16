@@ -22,11 +22,15 @@ public class ServerBuilder implements Builder<Server> {
         Server server = new Server(capacity);
 
         if (initLoad > 0) {
-            int initVmSize = (int) ((initLoad / (double) capacity) * 100.0);
-            Vm initVm = new Vm(initVmSize);
-            server.addVm(initVm);
+            addInitVm(server);
         }
 
         return server;
+    }
+
+    private void addInitVm(Server server) {
+        int initVmSize = (int) ((initLoad / (double) capacity) * 100.0);
+        Vm initVm = new Vm(initVmSize);
+        server.addVm(initVm);
     }
 }
